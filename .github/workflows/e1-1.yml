@@ -1,0 +1,21 @@
+name: E1-1 Linux Docker verification
+on:
+  push:
+    paths: ['E1-1/**', '.github/workflows/e1-1.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Execute real Docker and CLI exercises
+        run: bash E1-1/scripts/verify.sh
+      - name: Upload actual execution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e1-1-evidence
+          path: E1-1/evidence/verification.log
