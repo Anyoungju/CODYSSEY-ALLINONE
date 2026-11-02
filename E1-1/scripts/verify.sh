@@ -76,7 +76,7 @@ fi
 cp -r site "$sandbox/site"
 docker run -d -p 127.0.0.1::80 --name "$bind" --mount "type=bind,src=$sandbox/site,dst=/usr/share/nginx/html,readonly" "$image"
 bind_port=$(docker port "$bind" 80/tcp | awk -F: '{print $NF}')
-curl --fail --retry 10 --retry-connrefused --retry-delay 1 "http://127.0.0.1:$bind_port/"
+curl --fail --retry 10 --retry-all-errors --retry-connrefused --retry-delay 1 "http://127.0.0.1:$bind_port/"
 printf '<h1>E1-1 bind mount updated</h1>\n' > "$sandbox/site/index.html"
 curl --fail "http://127.0.0.1:$bind_port/" | grep 'bind mount updated'
 docker volume create "$volume"

@@ -300,16 +300,20 @@ def submit_login_form(client: CDPClient, email: str, password: str) -> bool:
 def main() -> int:
     """Fill the verified login form and report whether navigation succeeded."""
     config = load_dotenv(PROJECT_ROOT / ".env")
-    account = os.environ.get("CODYSSEY_ACCOUNT", config.get("CODYSSEY_ACCOUNT", "allinone"))
+    account = os.environ.get(
+        "CODYSSEY_ACCOUNT", config.get("CODYSSEY_ACCOUNT", "allinone")
+    )
     if account not in {"allinone", "native"}:
         raise ValueError("CODYSSEY_ACCOUNT must be allinone or native.")
     prefix = "CODYSSEY_" + account.upper()
-    email = config.get(prefix + "_EMAIL", config.get("CODYSSEY_EMAIL", ""))
-    password = config.get(prefix + "_PASSWORD", config.get("CODYSSEY_PASSWORD", ""))
+    email = config.get(prefix + "_EMAIL", "")
+    password = config.get(prefix + "_PASSWORD", "")
     if not email or not password:
-        raise RuntimeError("CODYSSEY_EMAIL and CODYSSEY_PASSWORD must be set.")
+        raise RuntimeError(f"{prefix}_EMAIL and {prefix}_PASSWORD must be set.")
 
-    port = int(os.environ.get("CHROME_CDP_PORT", config.get("CHROME_CDP_PORT", "9222")))
+    port = int(
+        os.environ.get("CHROME_CDP_PORT", config.get("CHROME_CDP_PORT", "9222"))
+    )
     attempts = int(
         os.environ.get(
             "CODYSSEY_LOGIN_ATTEMPTS",
@@ -328,10 +332,16 @@ def main() -> int:
             ) == identity
             if not matched:
                 client.call("Page.enable")
-                client.call("Page.navigate", {"url": "https://usr.codyssey.kr/daejeon/main/"})
+                client.call(
+                    "Page.navigate",
+                    {"url": "https://usr.codyssey.kr/daejeon/main/"},
+                )
                 deadline = time.monotonic() + 10
                 while time.monotonic() < deadline:
-                    if client.evaluate("[...document.querySelectorAll('button')].some(e => e.innerText.trim() === 'MY')"):
+                    if client.evaluate(
+                        "[...document.querySelectorAll('button')]"
+                        ".some(e => e.innerText.trim() === 'MY')"
+                    ):
                         break
                     time.sleep(0.25)
                 client.evaluate("""(() => {
@@ -346,14 +356,18 @@ def main() -> int:
                   button.click(); return true;
                 })()""")
                 if not clicked:
-                    raise RuntimeError("Cannot verify account; open the main page to switch.")
+                    raise RuntimeError(
+                        "Cannot verify account; open the main page to switch."
+                    )
         finally:
             client.close()
         if not matched:
             deadline = time.monotonic() + 10
             while time.monotonic() < deadline:
                 tabs = read_json(f"http://127.0.0.1:{port}/json/list")
-                target = next((item for item in tabs if item.get("id") == tab["id"]), {})
+                target = next(
+                    (item for item in tabs if item.get("id") == tab["id"]), {}
+                )
                 if is_login_tab(target):
                     session_state, tab = "login", target
                     break
