@@ -58,6 +58,7 @@ docker stop "$ubuntu"
 docker inspect -f '{{.State.Running}}' "$ubuntu" | grep false
 docker start "$ubuntu"
 docker attach --help
+python3 scripts/attach_demo.py "$prefix-attach"
 # exec starts another process; attach joins the main process streams.
 docker build -t "$image" .
 docker images "$image"
@@ -88,7 +89,13 @@ docker exec "$data" cat /data/proof.txt | grep E1-1-persistent
 docker ps -a
 docker logs "$web"
 docker stats --no-stream "$web"
-docker inspect -f '{{.State.Health.Status}}' "$web"
+for attempt in $(seq 1 20); do
+ health=$(docker inspect -f '{{.State.Health.Status}}' "$web")
+ if [ "$health" = healthy ]; then break; fi
+ sleep 1
+done
+[ "$health" = healthy ]
+echo HEALTHCHECK_PASS
 # Isolated git configuration: do not print the user's global configuration.
 git -C "$sandbox" init -b main
 git -C "$sandbox" config user.name 'E1-1 CI Learner'
