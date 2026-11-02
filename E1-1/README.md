@@ -33,13 +33,15 @@ bash E1-1/scripts/verify.sh
 작업 디렉터리와 컨테이너/볼륨은 실행별 이름으로 분리합니다. 스크립트 종료 시 해당 실행이 생성한 컨테이너와 볼륨만 정리합니다. 임시 실습 폴더는 검토를 위해 남깁니다. 실패 시 0이 아닌 종료 코드를 반환하며 실제 명령과 출력은 `E1-1/evidence/verification.log`에 저장됩니다.
 
 ## 수행 체크리스트
-- [ ] 실제 CI 결과와 로그: [검증 현황](evidence/STATUS.md)
+- [x] 실제 CI 결과와 로그: [검증 현황](evidence/STATUS.md)
 - [ ] 로컬 PC에서 Docker 실행 및 버전 증거
 - [ ] 주소창과 포트가 함께 보이는 실제 브라우저 캡처
 - [ ] 사용자 VSCode GitHub 로그인·원격 저장소 연동 화면
 
 ## 증거 확인
 GitHub Actions의 **E1-1 Linux Docker verification** 실행과 `e1-1-evidence` 아티팩트에서 전체 로그를 확인합니다. 다운로드하여 이 폴더에 보존한 로그가 있으면 [verification.log](evidence/verification.log)를 확인합니다. 실행되지 않은 결과를 성공으로 기록하지 않습니다.
+
+[정적 페이지 미리보기](evidence/static-preview.png)는 Chrome에서 HTML 파일을 렌더링한 화면이며 Docker 접속 캡처와 구분합니다.
 
 ## 제출 전 확인
 README 링크만으로 소스, Dockerfile, 명령과 출력, 문제 해결, 마운트 전후, 볼륨 재생성 전후를 확인할 수 있어야 합니다. 비밀번호·토큰·`.env`·개인키는 업로드하지 않습니다. 과정 평가 요청은 별도이며 이 저장소 생성으로 제출 완료를 의미하지 않습니다.
