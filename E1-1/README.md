@@ -34,7 +34,7 @@ bash E1-1/scripts/verify.sh
 
 ## 수행 체크리스트
 - [x] 실제 CI 결과와 로그: [검증 현황](evidence/STATUS.md)
-- [ ] 로컬 PC에서 Docker 실행 및 버전 증거
+- [x] 로컬 PC에서 Docker 실행 및 버전 증거: [실제 로컬 로그](evidence/verification-local-fixed-2026-11-03.log)
 - [ ] 주소창과 포트가 함께 보이는 실제 브라우저 캡처
 - [ ] 사용자 VSCode GitHub 로그인·원격 저장소 연동 화면
 
@@ -49,4 +49,9 @@ README 링크만으로 소스, Dockerfile, 명령과 출력, 문제 해결, 마�
 ## 쉽게 배우기
 [설명 PPT 18장](learning/E1-1_개발자작업실_아주쉬운설명.pptx)을 순서대로 읽습니다. 처음에는 1~6장까지만 보고 터미널의 위치·경로·권한 개념을 익힌 뒤 17장의 작은 실습을 진행하세요. 상세 설명과 공식 출처는 각 슬라이드의 발표자 노트에 있습니다.
 
-[Windows 관리자 설치와 남은 증거 안내](docs/windows-handoff.md). 현재 관리자 권한 부족으로 로컬 설치가 막혀 있으며, 평가 요청은 아직 하지 않았습니다.
+[Windows 관리자 설치와 남은 증거 안내](docs/windows-handoff.md). Docker Desktop과 Ubuntu 설치 및 WSL 통합을 완료했고 로컬 검증이 통과했습니다. VSCode 폴더 신뢰 설정, 주소창 포함 접속 캡처 및 평가 요청은 남아 있습니다.
+
+## 로컬 최종 점검 (2026-11-03)
+- Ubuntu WSL2 / bash 5.3.9 / Git 2.53.0 / Docker 29.9.2에서 전체 실습 통과.
+- [VSCode GitHub 계정 화면](evidence/vscode-github-account.png): Anyoungju 계정 로그인 확인. 이 화면은 제한 모드 상태이며 소스 제어 활성화 완료 증거와 구분합니다.
+- 로컬 Docker Desktop에서는 동일 포트 요청을 거절하지 않는 동작을 관찰했습니다. 충돌 실험을 detached 실행으로 바꾸고 생성 컨테이너를 즉시 정리해 무한 대기를 수정했습니다. CI의 Linux 포트 충돌 증거와 구분합니다.

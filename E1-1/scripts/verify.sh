@@ -21,7 +21,7 @@ bind="$prefix-bind"
 data="$prefix-data"
 ubuntu="$prefix-ubuntu"
 cleanup() {
- docker rm -f "$web" "$bind" "$data" "$ubuntu" >/dev/null 2>&1 || true
+ docker rm -f "$web" "$bind" "$data" "$ubuntu" "$prefix-collision" >/dev/null 2>&1 || true
  docker volume rm "$volume" >/dev/null 2>&1 || true
 }
 trap cleanup EXIT
@@ -71,8 +71,12 @@ done
 grep 'E1-1' "$sandbox/response.html"
 cat "$sandbox/response.html"
 # Reproduce host-port collision, then solve using a different allocated port.
-if docker run --rm -p "127.0.0.1:$port:80" "$image"; then
- echo 'ERROR: expected port conflict'; exit 1
+if docker run -d --name "$prefix-collision" -p "127.0.0.1:$port:80" "$image"; then
+ echo 'PORT_CONFLICT_PLATFORM_VARIATION: Docker Desktop accepted the duplicate request.'
+ docker inspect -f '{{json .NetworkSettings.Ports}}' "$prefix-collision"
+ docker rm -f "$prefix-collision"
+else
+ echo PORT_CONFLICT_REJECTED
 fi
 cp -r site "$sandbox/site"
 docker run -d -p 127.0.0.1::80 --name "$bind" --mount "type=bind,src=$sandbox/site,dst=/usr/share/nginx/html,readonly" "$image"

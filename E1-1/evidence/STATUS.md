@@ -13,9 +13,9 @@
 - 로컬 원본 프로젝트 테스트 15개 통과. 올인원 실제 자동 로그인 및 다음 실행 세션 재사용 확인.
 
 ## 남은 로컬 학습·증거
-- Windows 로컬 Docker/WSL 구축 및 동일 절차 실행: 미완료.
+- Windows Docker Desktop / Ubuntu WSL 통합 및 로컬 전체 검증: 완료. [실제 로컬 로그](verification-local-fixed-2026-11-03.log), VERIFICATION_PASS 확인.
 - 주소창과 포트가 함께 보이는 Docker 서버 브라우저 화면: 미수집. CI curl 성공과 구분합니다.
-- 사용자 VSCode GitHub 로그인·연동 화면: 미수집.
+- [VSCode GitHub 계정 로그인 화면](vscode-github-account.png): 수집 완료. 폴더 제한 모드 때문에 소스 제어 활성화는 사용자 신뢰 설정 후 확인 필요.
 - attach 대화형 분리 동작은 Linux CI의 실제 PTY에서 검증 완료. 학습자 로컬 체험은 관리자 설치 후 가능합니다.
 - 코디세이 평가 요청/최종 제출: 수행하지 않음.
 
@@ -25,3 +25,10 @@
 ## Windows 설치 시도와 학습 자료
 - 공식 Microsoft.WSL 설치가 0x80073d28(관리자 권한 필요)로 실패했습니다. 자동 재부팅하지 않았습니다. [사용자 관리자 단계](../docs/windows-handoff.md)를 완료해야 합니다.
 - [아주 쉬운 설명 PPT 18장](../learning/E1-1_개발자작업실_아주쉬운설명.pptx): 터미널부터 Docker·Git까지 일상 비유, 작은 실습, 확인 질문, 발표자 설명 포함.
+
+## 최신 로컬 결과
+- 이전 관리자 설치 오류는 해소되었습니다. Docker Desktop과 Ubuntu의 Docker 통합을 활성화했습니다.
+- Linux 6.18.54.1-microsoft-standard-WSL2, bash 5.3.9, Git 2.53.0, Docker 29.9.2.
+- [첫 로컬 실행 로그](verification-local-2026-11-03.log)는 포트 충돌 실험의 대기 문제로 중단되었으며, [수정 후 로그](verification-local-fixed-2026-11-03.log)는 전체 통과했습니다.
+- http://localhost:8080/ curl 응답은 확인. 주소창 포함 화면 캡처는 도구 중단으로 미수집.
+- 사용자 답변 ‘그래’는 신뢰 설정 완료 확인으로 간주하지 않았습니다.
