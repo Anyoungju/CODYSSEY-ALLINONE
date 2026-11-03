@@ -1,0 +1,414 @@
++ 10: uname -srm
+Linux 7.0.0-1017-azure x86_64
++ 11: head -n 1
++ 11: bash --version
+GNU bash, version 5.2.21(1)-release (x86_64-pc-linux-gnu)
++ 12: git --version
+git version 2.56.0
++ 13: docker --version
+Docker version 28.0.4, build b8034c0
++ 14: docker info
+Client: Docker Engine - Community
+ Version:    28.0.4
+ Context:    default
+ Debug Mode: false
+ Plugins:
+  buildx: Docker Buildx (Docker Inc.)
+    Version:  v0.38.1
+    Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+  compose: Docker Compose (Docker Inc.)
+    Version:  v2.38.2
+    Path:     /usr/libexec/docker/cli-plugins/docker-compose
+
+Server:
+ Containers: 0
+  Running: 0
+  Paused: 0
+  Stopped: 0
+ Images: 6
+ Server Version: 28.0.4
+ Storage Driver: overlay2
+  Backing Filesystem: extfs
+  Supports d_type: true
+  Using metacopy: false
+  Native Overlay Diff: false
+  userxattr: false
+ Logging Driver: json-file
+ Cgroup Driver: systemd
+ Cgroup Version: 2
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+ Swarm: inactive
+ Runtimes: io.containerd.runc.v2 runc
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: b7a25261e029d68978bbf290df0a62fc819b3c51
+ runc version: v1.5.2-0-g29dd3dc2
+ init version: de40ad0
+ Security Options:
+  apparmor
+  seccomp
+   Profile: builtin
+  cgroupns
+ Kernel Version: 7.0.0-1017-azure
+ Operating System: Ubuntu 24.04.5 LTS
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 2
+ Total Memory: 7.747GiB
+ Name: runnervm48cm3
+ ID: 66e228d3-4823-4830-aecc-3d27b286e9c6
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ Username: githubactions
+ Experimental: false
+ Insecure Registries:
+  ::1/128
+  127.0.0.0/8
+ Live Restore Enabled: false
+
+++ 15: mktemp -d
++ 15: sandbox=/tmp/tmp.SszGEHjrv5
++ 16: prefix=e11-41549393703
++ 17: image=e11-41549393703:local
++ 18: volume=e11-41549393703-data
++ 19: web=e11-41549393703-web
++ 20: bind=e11-41549393703-bind
++ 21: data=e11-41549393703-data
++ 22: ubuntu=e11-41549393703-ubuntu
++ 27: trap cleanup EXIT
++ 28: cd /tmp/tmp.SszGEHjrv5
++ 29: pwd
+/tmp/tmp.SszGEHjrv5
++ 30: mkdir practice
++ 31: ls -la
+total 12
+drwx------  3 runner runner 4096 Nov  2 23:58 .
+drwxrwxrwt 15 root   root   4096 Nov  2 23:58 ..
+drwxr-xr-x  2 runner runner 4096 Nov  2 23:58 practice
++ 32: cd practice
++ 33: touch empty.txt
++ 34: printf 'terminal practice\n'
++ 35: cat original.txt
+terminal practice
++ 36: cp original.txt copied.txt
++ 37: mv copied.txt renamed.txt
++ 38: rm renamed.txt
++ 39: mkdir permissions
++ 40: chmod 600 original.txt
++ 41: chmod 700 permissions
++ 42: ls -ld original.txt permissions
+-rw------- 1 runner runner   18 Nov  2 23:58 original.txt
+drwx------ 2 runner runner 4096 Nov  2 23:58 permissions
++ 43: chmod 644 original.txt
++ 44: chmod 755 permissions
++ 45: ls -ld original.txt permissions
+-rw-r--r-- 1 runner runner   18 Nov  2 23:58 original.txt
+drwxr-xr-x 2 runner runner 4096 Nov  2 23:58 permissions
++ 47: printf '#!/bin/sh\necho permission-fixed\n'
++ 48: chmod 644 execute.sh
++ 49: ./execute.sh
+E1-1/scripts/verify.sh: line 49: ./execute.sh: Permission denied
++ 50: chmod 755 execute.sh
++ 51: ./execute.sh
+permission-fixed
++ 52: cd /home/runner/work/CODYSSEY-ALLINONE/CODYSSEY-ALLINONE/E1-1
++ 53: docker run --rm hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+4f55086f7dd0: Pulling fs layer
+4f55086f7dd0: Verifying Checksum
+4f55086f7dd0: Download complete
+4f55086f7dd0: Pull complete
+Digest: sha256:c567b231f65614688711a75f31518a064258a51d442117a3e771a3a8fdba78ef
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
++ 54: docker run -d --name e11-41549393703-ubuntu ubuntu:24.04 sleep infinity
+Unable to find image 'ubuntu:24.04' locally
+24.04: Pulling from library/ubuntu
+7a48b8f0e5c7: Pulling fs layer
+7a48b8f0e5c7: Verifying Checksum
+7a48b8f0e5c7: Download complete
+7a48b8f0e5c7: Pull complete
+Digest: sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852
+Status: Downloaded newer image for ubuntu:24.04
+ac4351fe52115be88c250d6fdb0ba7502fdf55d286d7188d677aa9464cb122b5
++ 55: docker exec e11-41549393703-ubuntu sh -c 'ls /; echo ubuntu-exec-ok'
+bin
+boot
+dev
+etc
+home
+lib
+lib64
+media
+mnt
+opt
+proc
+root
+run
+sbin
+srv
+sys
+tmp
+usr
+var
+ubuntu-exec-ok
++ 56: docker inspect -f '{{.State.Running}}' e11-41549393703-ubuntu
++ 56: grep true
+true
++ 57: docker stop e11-41549393703-ubuntu
+e11-41549393703-ubuntu
++ 58: docker inspect -f '{{.State.Running}}' e11-41549393703-ubuntu
++ 58: grep false
+false
++ 59: docker start e11-41549393703-ubuntu
+e11-41549393703-ubuntu
++ 60: docker attach --help
+Usage:  docker attach [OPTIONS] CONTAINER
+
+Attach local standard input, output, and error streams to a running container
+
+Aliases:
+  docker container attach, docker attach
+
+Options:
+      --detach-keys string   Override the key sequence for detaching a
+                             container
+      --no-stdin             Do not attach STDIN
+      --sig-proxy            Proxy all received signals to the process
+                             (default true)
++ 61: python3 scripts/attach_demo.py e11-41549393703-attach
+ce4707cbd25ebf05e7ca617d5942edf3ee7272bf814db35dbc020ffb45abd81f
+EXEC_CHILD_EXIT
+e11-41549393703-attach
+e11-41549393703-attach
+[K]0;root@ce4707cbd25e: /root@ce4707cbd25e:/# echo ATTACH_CONNECTED
+[?2004lATTACH_CONNECTED
+[?2004h[K
+DETACH_PASS: main bash remains running
+ATTACH_EXEC_PASS: detach and child exit preserve main process
++ 63: docker build -t e11-41549393703:local .
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 274B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/nginx:stable-alpine
+#2 ...
+
+#3 [auth] library/nginx:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/nginx:stable-alpine
+#2 DONE 0.8s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 70B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 949B done
+#5 DONE 0.0s
+
+#6 [1/2] FROM docker.io/library/nginx:stable-alpine@sha256:0e52bd054126cdc040b1276c0af347aeb02a41b9cfe305d6094767ac30e97949
+#6 resolve docker.io/library/nginx:stable-alpine@sha256:0e52bd054126cdc040b1276c0af347aeb02a41b9cfe305d6094767ac30e97949 done
+#6 sha256:0e52bd054126cdc040b1276c0af347aeb02a41b9cfe305d6094767ac30e97949 10.32kB / 10.32kB done
+#6 sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 3.85MB / 3.85MB 0.1s
+#6 sha256:9f0afb44f10e826253b342c0265e188067c2f0a30c782a52e329928a763adc60 0B / 1.88MB 0.1s
+#6 sha256:84ed8c0dd296c188bfc24ed506f46589e9285fb0b11cf3a04d91d524d3067e11 2.49kB / 2.49kB done
+#6 sha256:88f52f3d58a505b7e1ad96ca6969478517bcccb58418e75a54223271a64da7df 12.29kB / 12.29kB done
+#6 sha256:f19a2d3b695178ba0e57d473535f74f5d934f45e191de8334e730f83d2c62704 0B / 627B 0.1s
+#6 sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 3.85MB / 3.85MB 0.1s done
+#6 sha256:f19a2d3b695178ba0e57d473535f74f5d934f45e191de8334e730f83d2c62704 627B / 627B 0.1s done
+#6 extracting sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 0.1s
+#6 sha256:e125989d16f03d1e00b60afdd9abe46ed1437ed63b73926d036a5537f6be770a 0B / 403B 0.2s
+#6 sha256:885725a63a7cf1d4d5aac105944b35ece2b69a8c2cc6f7040f04727b7b8a63d2 0B / 964B 0.2s
+#6 sha256:9f0afb44f10e826253b342c0265e188067c2f0a30c782a52e329928a763adc60 1.88MB / 1.88MB 0.2s done
+#6 extracting sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 0.1s done
+#6 sha256:e125989d16f03d1e00b60afdd9abe46ed1437ed63b73926d036a5537f6be770a 403B / 403B 0.2s done
+#6 sha256:885725a63a7cf1d4d5aac105944b35ece2b69a8c2cc6f7040f04727b7b8a63d2 964B / 964B 0.2s done
+#6 extracting sha256:9f0afb44f10e826253b342c0265e188067c2f0a30c782a52e329928a763adc60 0.0s done
+#6 sha256:81b64ae234ef95f3cfc19b7f6c45a511eccbefa6148889ee33ed43c6c3f39939 1.21kB / 1.21kB 0.3s done
+#6 sha256:bb658a2541968d2b90a8ee165ad08b7f71055c7f7832bdff98e2de2d8b90cf14 1.40kB / 1.40kB 0.3s done
+#6 sha256:5b8cb54cfa408030aaa43d7bffa9141e0ae6f8a479df13c7aa152100cca358fb 1.05MB / 20.31MB 0.4s
+#6 sha256:5b8cb54cfa408030aaa43d7bffa9141e0ae6f8a479df13c7aa152100cca358fb 20.31MB / 20.31MB 0.6s
+#6 extracting sha256:f19a2d3b695178ba0e57d473535f74f5d934f45e191de8334e730f83d2c62704
+#6 sha256:5b8cb54cfa408030aaa43d7bffa9141e0ae6f8a479df13c7aa152100cca358fb 20.31MB / 20.31MB 0.7s done
+#6 extracting sha256:f19a2d3b695178ba0e57d473535f74f5d934f45e191de8334e730f83d2c62704 done
+#6 extracting sha256:885725a63a7cf1d4d5aac105944b35ece2b69a8c2cc6f7040f04727b7b8a63d2 done
+#6 extracting sha256:e125989d16f03d1e00b60afdd9abe46ed1437ed63b73926d036a5537f6be770a done
+#6 extracting sha256:81b64ae234ef95f3cfc19b7f6c45a511eccbefa6148889ee33ed43c6c3f39939 done
+#6 extracting sha256:bb658a2541968d2b90a8ee165ad08b7f71055c7f7832bdff98e2de2d8b90cf14 done
+#6 extracting sha256:5b8cb54cfa408030aaa43d7bffa9141e0ae6f8a479df13c7aa152100cca358fb 0.1s
+#6 extracting sha256:5b8cb54cfa408030aaa43d7bffa9141e0ae6f8a479df13c7aa152100cca358fb 0.3s done
+#6 DONE 1.7s
+
+#7 [2/2] COPY site/ /usr/share/nginx/html/
+#7 DONE 0.0s
+
+#8 exporting to image
+#8 exporting layers
+#8 exporting layers 0.7s done
+#8 writing image sha256:4d562a1225a22e9d75496b6ee7b6645a4499dc978512f94fb434a523cba4fc51 done
+#8 naming to docker.io/library/e11-41549393703:local done
+#8 DONE 0.7s
++ 64: docker images e11-41549393703:local
+REPOSITORY        TAG       IMAGE ID       CREATED        SIZE
+e11-41549393703   local     4d562a1225a2   1 second ago   62.3MB
++ 65: docker run -d -p 127.0.0.1::80 --name e11-41549393703-web e11-41549393703:local
+e229fb236e14800ec458500d9b6c9f9bd4ee76abb1390da3e4e93fa242bd0d67
+++ 66: docker port e11-41549393703-web 80/tcp
+++ 66: awk -F: '{print $NF}'
++ 66: port=32768
+++ 67: seq 1 30
++ 67: for attempt in $(seq 1 30)
++ 68: curl --fail -s http://127.0.0.1:32768/
++ 68: break
++ 71: grep E1-1 /tmp/tmp.SszGEHjrv5/response.html
+<title>E1-1 개발자 작업실</title><style>body{font-family:system-ui;max-width:760px;margin:10vh auto;padding:24px;background:#102137;color:#eef7ff}article{padding:32px;border:1px solid #6ecfc0;border-radius:20px}h1{color:#6ecfc0}li{margin:14px 0}</style>
+<article><p>CODYSSEY · ALL-IN-ONE · E1-1</p><h1>나의 첫 개발자 작업실</h1><p>터미널에서 만들고, Docker로 실행하고, Git으로 기록합니다.</p><ul><li>이미지: 실행에 필요한 파일을 담은 틀</li><li>컨테이너: 이미지로 실행한 독립된 작업 공간</li><li>포트: 브라우저가 서버에 접속하는 통로</li><li>볼륨: 컨테이너와 별도로 유지하는 데이터 공간</li></ul><p id="version">실습 버전 1</p></article></html>
++ 72: cat /tmp/tmp.SszGEHjrv5/response.html
+<!doctype html>
+<html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E1-1 개발자 작업실</title><style>body{font-family:system-ui;max-width:760px;margin:10vh auto;padding:24px;background:#102137;color:#eef7ff}article{padding:32px;border:1px solid #6ecfc0;border-radius:20px}h1{color:#6ecfc0}li{margin:14px 0}</style>
+<article><p>CODYSSEY · ALL-IN-ONE · E1-1</p><h1>나의 첫 개발자 작업실</h1><p>터미널에서 만들고, Docker로 실행하고, Git으로 기록합니다.</p><ul><li>이미지: 실행에 필요한 파일을 담은 틀</li><li>컨테이너: 이미지로 실행한 독립된 작업 공간</li><li>포트: 브라우저가 서버에 접속하는 통로</li><li>볼륨: 컨테이너와 별도로 유지하는 데이터 공간</li></ul><p id="version">실습 버전 1</p></article></html>
++ 74: docker run --rm -p 127.0.0.1:32768:80 e11-41549393703:local
+docker: Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint sharp_edison (2755fedc0c66c33c3fe46c24c47e5a295f134e3fe0322546b2124dc0afe0199b): Bind for 127.0.0.1:32768 failed: port is already allocated
+
+Run 'docker run --help' for more information
++ 77: cp -r site /tmp/tmp.SszGEHjrv5/site
++ 78: docker run -d -p 127.0.0.1::80 --name e11-41549393703-bind --mount type=bind,src=/tmp/tmp.SszGEHjrv5/site,dst=/usr/share/nginx/html,readonly e11-41549393703:local
+37a1f2eb9f0c6fab48757ccced25b0f4383805af7f0188e0883199cf877f6618
+++ 79: docker port e11-41549393703-bind 80/tcp
+++ 79: awk -F: '{print $NF}'
++ 79: bind_port=32769
++ 80: curl --fail --retry 10 --retry-all-errors --retry-connrefused --retry-delay 1 http://127.0.0.1:32769/
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   877  100   877    0     0   876k      0 --:--:-- --:--:-- --:--:--  856k
+<!doctype html>
+<html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E1-1 개발자 작업실</title><style>body{font-family:system-ui;max-width:760px;margin:10vh auto;padding:24px;background:#102137;color:#eef7ff}article{padding:32px;border:1px solid #6ecfc0;border-radius:20px}h1{color:#6ecfc0}li{margin:14px 0}</style>
+<article><p>CODYSSEY · ALL-IN-ONE · E1-1</p><h1>나의 첫 개발자 작업실</h1><p>터미널에서 만들고, Docker로 실행하고, Git으로 기록합니다.</p><ul><li>이미지: 실행에 필요한 파일을 담은 틀</li><li>컨테이너: 이미지로 실행한 독립된 작업 공간</li><li>포트: 브라우저가 서버에 접속하는 통로</li><li>볼륨: 컨테이너와 별도로 유지하는 데이터 공간</li></ul><p id="version">실습 버전 1</p></article></html>
++ 81: printf '<h1>E1-1 bind mount updated</h1>\n'
++ 82: curl --fail http://127.0.0.1:32769/
++ 82: grep 'bind mount updated'
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    33  100    33    0     0  49180      0 --:--:-- --:--:-- --:--:-- 33000
+<h1>E1-1 bind mount updated</h1>
++ 83: docker volume create e11-41549393703-data
+e11-41549393703-data
++ 84: docker run -d --name e11-41549393703-data --mount type=volume,src=e11-41549393703-data,dst=/data ubuntu:24.04 sleep infinity
+f75b14150e41b3be4f91fe2d5f509b71563e2fdd68e1b58a058772591b849b48
++ 85: docker exec e11-41549393703-data sh -c 'echo E1-1-persistent > /data/proof.txt; cat /data/proof.txt'
+E1-1-persistent
++ 86: docker rm -f e11-41549393703-data
+e11-41549393703-data
++ 87: docker run -d --name e11-41549393703-data --mount type=volume,src=e11-41549393703-data,dst=/data ubuntu:24.04 sleep infinity
+a0a38aaf66a4c88a2c88960dfdba694f9b7667a8aaa4e80facd2c0c1fa949fac
++ 88: docker exec e11-41549393703-data cat /data/proof.txt
++ 88: grep E1-1-persistent
+E1-1-persistent
++ 89: docker ps -a
+CONTAINER ID   IMAGE                   COMMAND                  CREATED          STATUS                                     PORTS                     NAMES
+a0a38aaf66a4   ubuntu:24.04            "sleep infinity"         1 second ago     Up Less than a second                                                e11-41549393703-data
+37a1f2eb9f0c   e11-41549393703:local   "/docker-entrypoint.…"   1 second ago     Up Less than a second (health: starting)   127.0.0.1:32769->80/tcp   e11-41549393703-bind
+e229fb236e14   e11-41549393703:local   "/docker-entrypoint.…"   1 second ago     Up Less than a second (health: starting)   127.0.0.1:32768->80/tcp   e11-41549393703-web
+ac4351fe5211   ubuntu:24.04            "sleep infinity"         27 seconds ago   Up 15 seconds                                                        e11-41549393703-ubuntu
++ 90: docker logs e11-41549393703-web
+/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+/docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+/docker-entrypoint.sh: Configuration complete; ready for start up
+2026/11/02 23:58:52 [notice] 1#1: using the "epoll" event method
+2026/11/02 23:58:52 [notice] 1#1: nginx/1.30.6
+2026/11/02 23:58:52 [notice] 1#1: built by gcc 15.2.0 (Alpine 15.2.0) 
+2026/11/02 23:58:52 [notice] 1#1: OS: Linux 7.0.0-1017-azure
+2026/11/02 23:58:52 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 65536:65536
+2026/11/02 23:58:52 [notice] 1#1: start worker processes
+2026/11/02 23:58:52 [notice] 1#1: start worker process 30
+2026/11/02 23:58:52 [notice] 1#1: start worker process 31
+172.17.0.1 - - [02/Nov/2026:23:58:52 +0000] "GET / HTTP/1.1" 200 877 "-" "curl/8.5.0" "-"
++ 91: docker stats --no-stream e11-41549393703-web
+CONTAINER ID   NAME                  CPU %     MEM USAGE / LIMIT     MEM %     NET I/O           BLOCK I/O     PIDS
+e229fb236e14   e11-41549393703-web   0.00%     3.293MiB / 7.747GiB   0.04%     1.31kB / 1.58kB   0B / 12.3kB   3
+++ 92: seq 1 20
++ 92: for attempt in $(seq 1 20)
+++ 93: docker inspect -f '{{.State.Health.Status}}' e11-41549393703-web
++ 93: health=starting
++ 94: '[' starting = healthy ']'
++ 95: sleep 1
++ 92: for attempt in $(seq 1 20)
+++ 93: docker inspect -f '{{.State.Health.Status}}' e11-41549393703-web
++ 93: health=starting
++ 94: '[' starting = healthy ']'
++ 95: sleep 1
++ 92: for attempt in $(seq 1 20)
+++ 93: docker inspect -f '{{.State.Health.Status}}' e11-41549393703-web
++ 93: health=starting
++ 94: '[' starting = healthy ']'
++ 95: sleep 1
++ 92: for attempt in $(seq 1 20)
+++ 93: docker inspect -f '{{.State.Health.Status}}' e11-41549393703-web
++ 93: health=healthy
++ 94: '[' healthy = healthy ']'
++ 94: break
++ 97: '[' healthy = healthy ']'
++ 98: echo HEALTHCHECK_PASS
+HEALTHCHECK_PASS
++ 100: git -C /tmp/tmp.SszGEHjrv5 init -b main
+Initialized empty Git repository in /tmp/tmp.SszGEHjrv5/.git/
++ 101: git -C /tmp/tmp.SszGEHjrv5 config user.name 'E1-1 CI Learner'
++ 102: git -C /tmp/tmp.SszGEHjrv5 config user.email learner@example.invalid
++ 103: git -C /tmp/tmp.SszGEHjrv5 config init.defaultBranch main
++ 104: git -C /tmp/tmp.SszGEHjrv5 config --local --list
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+user.name=E1-1 CI Learner
+user.email=learner@example.invalid
+init.defaultbranch=main
++ 105: git -C /tmp/tmp.SszGEHjrv5 add practice
++ 106: git -C /tmp/tmp.SszGEHjrv5 commit -m 'Practice terminal and permissions'
+[main (root-commit) e767d2d] Practice terminal and permissions
+ 3 files changed, 3 insertions(+)
+ create mode 100644 practice/empty.txt
+ create mode 100755 practice/execute.sh
+ create mode 100644 practice/original.txt
++ 107: git -C /tmp/tmp.SszGEHjrv5 log -1 --oneline
+e767d2d Practice terminal and permissions
++ 108: set +x
+
+VERIFICATION_PASS: CLI, permissions, Docker, HTTP, bind mount, persistence, Git

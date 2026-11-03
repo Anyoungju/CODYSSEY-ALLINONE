@@ -7,7 +7,7 @@
 | Docker 버전·데몬 | docker --version, info | CI 로그. 로컬 실행 별도 |
 | 이미지·실행·중지·목록·로그·자원 | images/run/stop/start/ps/logs/stats | CI 로그 |
 | hello-world, Ubuntu 내부 ls/echo | run 및 exec | CI 로그 |
-| attach/exec·종료/유지 관찰 | attach 도움말, sleep infinity, exec 후 Running 검사, stop 후 false | docs/learning.md와 로그. 대화형 attach 체험은 학습자 추가 실습 |
+| attach/exec·종료/유지 관찰 | attach 도움말, sleep infinity, exec 후 Running 검사, stop 후 false | attach_demo.py의 실제 PTY 접속/분리/상태 검증 로그. 로컬 체험 별도 |
 | 직접 작성한 Dockerfile | NGINX + COPY + HEALTHCHECK | Dockerfile, 실제 build 로그 |
 | 포트 연결 | 두 컨테이너 각각 호스트 포트 자동 배정 → 내부 80 | docker port/curl, 주소창 캡처 추가 필요 |
 | 바인드 마운트 전후 | 원본 페이지 → bind mount updated | curl 출력 비교 |
