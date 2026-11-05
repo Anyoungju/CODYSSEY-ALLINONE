@@ -1,4 +1,4 @@
-# 검증 상태 (2026-11-03)
+# 검증 상태 (2026-11-05 재확인)
 
 ## 실제 통과한 검증
 - [Linux Docker 검증 성공](https://github.com/Anyoungju/CODYSSEY-ALLINONE/actions/runs/41403344676)
@@ -15,15 +15,15 @@
 ## 남은 로컬 학습·증거
 - Windows Docker Desktop / Ubuntu WSL 통합 및 로컬 전체 검증: 완료. [실제 로컬 로그](verification-local-fixed-2026-11-03.log), VERIFICATION_PASS 확인.
 - 주소창과 포트가 함께 보이는 Docker 서버 브라우저 화면: 미수집. CI curl 성공과 구분합니다.
-- [VSCode GitHub 계정 로그인 화면](vscode-github-account.png): 수집 완료. 폴더 제한 모드 때문에 소스 제어 활성화는 사용자 신뢰 설정 후 확인 필요.
-- attach 대화형 분리 동작은 Linux CI의 실제 PTY에서 검증 완료. 학습자 로컬 체험은 관리자 설치 후 가능합니다.
+- [VSCode GitHub 계정 로그인 화면](vscode-github-account.png): 수집 완료. 2026-11-05 [최신 VSCode 화면](vscode-source-control-linked.png)에서 제한 모드 해제 및 main/origin 소스 제어 활성화 확인 완료.
+- attach 대화형 분리 동작은 Linux CI의 실제 PTY에서 검증 완료. 로컬 Ubuntu에서도 실제 PTY 검증을 통과했습니다.
 - 코디세이 평가 요청/최종 제출: 수행하지 않음.
 
 ## 정적 페이지 시각 검수
 [Chrome 렌더링 미리보기](static-preview.png)는 실제 HTML 파일을 열어 확인한 화면입니다. Docker 접속 증거가 아닙니다.
 
 ## Windows 설치 시도와 학습 자료
-- 공식 Microsoft.WSL 설치가 0x80073d28(관리자 권한 필요)로 실패했습니다. 자동 재부팅하지 않았습니다. [사용자 관리자 단계](../docs/windows-handoff.md)를 완료해야 합니다.
+- 공식 Microsoft.WSL 설치가 0x80073d28(관리자 권한 필요)로 실패했습니다. 자동 재부팅하지 않았습니다. 이는 초기 실패 기록이며, 이후 설치·WSL 통합·로컬 검증은 완료했습니다. [현재 로컬 상태](../docs/windows-handoff.md)를 참조하세요.
 - [아주 쉬운 설명 PPT 18장](../learning/E1-1_개발자작업실_아주쉬운설명.pptx): 터미널부터 Docker·Git까지 일상 비유, 작은 실습, 확인 질문, 발표자 설명 포함.
 
 ## 최신 로컬 결과
@@ -32,3 +32,9 @@
 - [첫 로컬 실행 로그](verification-local-2026-11-03.log)는 포트 충돌 실험의 대기 문제로 중단되었으며, [수정 후 로그](verification-local-fixed-2026-11-03.log)는 전체 통과했습니다.
 - http://localhost:8080/ curl 응답은 확인. 주소창 포함 화면 캡처는 도구 중단으로 미수집.
 - 사용자 답변 ‘그래’는 신뢰 설정 완료 확인으로 간주하지 않았습니다.
+
+## 2026-11-05 최신 확인
+- GitHub main의 47b192f와 관련 CI 성공을 재확인했습니다.
+- allinone-e1-1-review 컨테이너가 127.0.0.1:8080에서 실행 중임을 확인했습니다.
+- VSCode의 제한 모드가 해제되었고 main/origin 소스 제어 그래프가 활성화되었습니다.
+- 주소창 포함 브라우저 캡처, 평가자의 비공개 저장소 접근, 코디세이 제출은 아직 완료 증거가 없습니다.

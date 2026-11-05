@@ -3,7 +3,7 @@
 ## 목표와 완료 범위
 터미널·리눅스 권한·Docker·Git을 사용해 재현 가능한 웹 실행 환경을 구성합니다.
 이 저장소는 직접 작성한 Dockerfile, 웹페이지, 검증 스크립트 및 실제 실행 증거를 제공합니다.
-**GitHub Actions Linux 검증과 학습자의 로컬 PC 구축은 구분합니다.** 로컬 PC에는 Docker/WSL이 없어 로컬 구축 완료로 주장하지 않습니다.
+Windows의 Docker Desktop과 Ubuntu WSL2에서 로컬 전체 검증을 통과했습니다. GitHub Actions의 Linux 검증 로그도 함께 제공합니다.
 
 ## 요구사항 분석
 [요구사항과 증거 대응표](docs/requirements.md), [개념 및 풀이 순서](docs/learning.md), [문제 해결](docs/troubleshooting.md), [검증 현황](evidence/STATUS.md).
@@ -11,7 +11,7 @@
 
 ## 실행 환경
 - 실제 검증 환경: GitHub Actions ubuntu-latest, bash, Docker Engine. 정확한 OS/도구 버전은 실행 로그 참조.
-- 사용자 PC: Windows, Docker 명령 없음, WSL 배포판 미설치. Linux CLI/권한 실습은 준비된 Linux 환경에서 수행합니다.
+- 사용자 PC 실측: Windows + Ubuntu WSL2, bash 5.3.9, Docker 29.9.2, Git 2.53.0. Linux 파일시스템에서 권한 실습을 실행했습니다.
 - 외부 Python 패키지 없이 NGINX 기반 이미지와 Bash/Docker CLI를 사용합니다.
 - 베이스 이미지: `nginx:stable-alpine`. 직접 만든 HTML과 HTTP healthcheck를 추가했습니다. 태그는 갱신되므로 재현 당시 이미지 digest는 빌드 로그를 확인합니다.
 
@@ -36,7 +36,7 @@ bash E1-1/scripts/verify.sh
 - [x] 실제 CI 결과와 로그: [검증 현황](evidence/STATUS.md)
 - [x] 로컬 PC에서 Docker 실행 및 버전 증거: [실제 로컬 로그](evidence/verification-local-fixed-2026-11-03.log)
 - [ ] 주소창과 포트가 함께 보이는 실제 브라우저 캡처
-- [ ] 사용자 VSCode GitHub 로그인·원격 저장소 연동 화면
+- [x] 사용자 VSCode GitHub 로그인 및 소스 제어 활성화: [계정](evidence/vscode-github-account.png), [원격 연결](evidence/vscode-source-control-linked.png)
 
 ## 증거 확인
 GitHub Actions의 **E1-1 Linux Docker verification** 실행과 `e1-1-evidence` 아티팩트에서 전체 로그를 확인합니다. 다운로드하여 이 폴더에 보존한 로그가 있으면 [verification.log](evidence/verification.log)를 확인합니다. 실행되지 않은 결과를 성공으로 기록하지 않습니다.
@@ -49,9 +49,9 @@ README 링크만으로 소스, Dockerfile, 명령과 출력, 문제 해결, 마�
 ## 쉽게 배우기
 [설명 PPT 18장](learning/E1-1_개발자작업실_아주쉬운설명.pptx)을 순서대로 읽습니다. 처음에는 1~6장까지만 보고 터미널의 위치·경로·권한 개념을 익힌 뒤 17장의 작은 실습을 진행하세요. 상세 설명과 공식 출처는 각 슬라이드의 발표자 노트에 있습니다.
 
-[Windows 관리자 설치와 남은 증거 안내](docs/windows-handoff.md). Docker Desktop과 Ubuntu 설치 및 WSL 통합을 완료했고 로컬 검증이 통과했습니다. VSCode 폴더 신뢰 설정, 주소창 포함 접속 캡처 및 평가 요청은 남아 있습니다.
+[Windows 관리자 설치와 남은 증거 안내](docs/windows-handoff.md). Docker Desktop과 Ubuntu 설치 및 WSL 통합을 완료했고 로컬 검증이 통과했습니다. VSCode 소스 제어도 활성화했습니다. 주소창 포함 접속 캡처와 평가 요청은 아직 남아 있습니다.
 
 ## 로컬 최종 점검 (2026-11-03)
 - Ubuntu WSL2 / bash 5.3.9 / Git 2.53.0 / Docker 29.9.2에서 전체 실습 통과.
-- [VSCode GitHub 계정 화면](evidence/vscode-github-account.png): Anyoungju 계정 로그인 확인. 이 화면은 제한 모드 상태이며 소스 제어 활성화 완료 증거와 구분합니다.
+- [VSCode GitHub 계정 화면](evidence/vscode-github-account.png): Anyoungju 계정 로그인 확인. 계정 화면은 이전 제한 모드 시점의 기록이며, [최신 소스 제어 화면](evidence/vscode-source-control-linked.png)에서 제한 모드 해제 및 main/origin 연결을 확인했습니다.
 - 로컬 Docker Desktop에서는 동일 포트 요청을 거절하지 않는 동작을 관찰했습니다. 충돌 실험을 detached 실행으로 바꾸고 생성 컨테이너를 즉시 정리해 무한 대기를 수정했습니다. CI의 Linux 포트 충돌 증거와 구분합니다.
