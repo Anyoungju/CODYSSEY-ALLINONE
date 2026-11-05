@@ -9,3 +9,15 @@
 7. Git은 로컬 변경 이력, GitHub는 원격 저장과 협업 공간입니다. 실제 실습 단위로 커밋하고 증거를 연결합니다.
 
 첫 학습 범위: 미션 소개와 최종 결과물, 터미널 기본 실습까지. 작은 과제는 빈 파일을 생성하고 복사한 뒤 복사본만 이름을 바꾸는 것입니다. 확인 질문: 현재 위치가 바뀌면 상대 경로의 의미가 왜 달라질까요?
+
+## 볼륨 데이터 보호: 백업·복원 절차 예시
+
+아래 절차는 권장 예시이며 이번 필수 실습에서 실행 완료했다고 주장하지 않습니다. 실행 중인 앱이 있으면 쓰기를 먼저 중지해 일관된 데이터를 확보합니다. 실습 전용 e1-data 볼륨에만 적용합니다.
+```bash
+mkdir -p backup
+docker run --rm -v e1-data:/data:ro -v "$PWD/backup:/backup" ubuntu:24.04 tar -czf /backup/e1-data.tgz -C /data .
+docker volume create e1-restored
+docker run --rm -v e1-restored:/data -v "$PWD/backup:/backup:ro" ubuntu:24.04 tar -xzf /backup/e1-data.tgz -C /data
+```
+복원 후 새 볼륨을 테스트 컨테이너에 연결하여 파일 내용과 개수를 비교합니다. 원본 볼륨을 삭제하거나 덮어쓰지 않고 별도 볼륨에 복원합니다. 백업은 작업 PC 외부에도 보관하고 민감정보가 있으면 적절히 보호합니다.
+공식 설명: https://docs.docker.com/engine/storage/volumes/#back-up-restore-or-migrate-data-volumes

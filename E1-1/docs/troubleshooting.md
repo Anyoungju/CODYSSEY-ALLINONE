@@ -28,3 +28,19 @@
 - 확인: 실제 컨테이너와 요청 PortBindings를 조사하고 실험 컨테이너만 중지했습니다. 첫 로컬 실패 로그를 보존했습니다.
 - 해결: 충돌 실험을 -d 및 고유 이름으로 실행해 즉시 반환시키고 성공/실패를 모두 기록한 뒤 해당 컨테이너를 정리합니다. 요청 수락을 충돌 거절 성공으로 기록하지 않습니다.
 - 재검증: 수정 후 로컬 로그에서 PORT_CONFLICT_PLATFORM_VARIATION 및 최종 VERIFICATION_PASS를 확인했습니다.
+
+## 포트 점유 확인과 안전한 해제 절차
+
+아래는 진단용 실행 예시이며 실제 실행 출력으로 제시한 것은 아닙니다.
+```bash
+ss -ltnp 'sport = :8080'
+docker ps --filter publish=8080
+```
+먼저 점유 주체를 확인한 후 본인이 만든 실습 컨테이너만 `docker stop <실습컨테이너명>`으로 중지합니다. 다른 작업의 프로세스를 강제 종료하지 않습니다. 기존 컨테이너를 유지해야 하면 호스트 포트를 8081 등으로 바꿉니다. Docker Desktop에서는 호스트 포트 프록시와 WSL 네임스페이스가 달라 ss 출력만으로 단정하지 말고 Docker 포트 설정도 함께 확인합니다.
+
+## 각 사례 실제 로그 위치
+
+- 권한 거부 → 실행 비트 추가: [실제 로컬 로그 Markdown](../evidence/VERIFIED_LOCAL_RESULTS.md)의 chmod 644, Permission denied, chmod 755, permission-fixed 부분.
+- Linux CI 포트 충돌: [CI 원본](../evidence/verification.log)의 port is already allocated 부분.
+- Docker Desktop 차이와 무한 대기 수정: [로컬 Markdown](../evidence/VERIFIED_LOCAL_RESULTS.md)의 PORT_CONFLICT_PLATFORM_VARIATION 및 NetworkSettings.Ports 부분.
+- 서버 초기 준비 오류: [첫 CI 실행](https://github.com/Anyoungju/CODYSSEY-ALLINONE/actions/runs/41403155225), 수정 후 실행은 README에 연결되어 있습니다.
