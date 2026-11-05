@@ -258,7 +258,7 @@ This message shows that your installation appears to be working correctly.
 #7 DONE 0.1s
 + 64: docker images e11-1494:local
 IMAGE            ID             DISK USAGE   CONTENT SIZE   EXTRA
-e11-1494:local   7cb7ef0dd12e       92.7MB         26.1MB        
+e11-1494:local   7cb7ef0dd12e       92.7MB         26.1MB
 ```
 
 ### 포트 매핑과 실제 curl 응답

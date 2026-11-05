@@ -292,7 +292,7 @@ ATTACH_EXEC_PASS: detach and child exit preserve main process
 #7 DONE 0.1s
 + 64: docker images e11-1494:local
 IMAGE            ID             DISK USAGE   CONTENT SIZE   EXTRA
-e11-1494:local   7cb7ef0dd12e       92.7MB         26.1MB        
+e11-1494:local   7cb7ef0dd12e       92.7MB         26.1MB
 + 65: docker run -d -p 127.0.0.1::80 --name e11-1494-web e11-1494:local
 0576735d902a4f05ef03864bc79624535165a5a87f8ba692093f3bece66ac61e
 ++ 66: docker port e11-1494-web 80/tcp
@@ -378,7 +378,7 @@ bf8e76123af6   ubuntu:24.04     "sleep infinity"         24 seconds ago   Up 20 
 /docker-entrypoint.sh: Configuration complete; ready for start up
 2026/11/03 07:16:30 [notice] 1#1: using the "epoll" event method
 2026/11/03 07:16:30 [notice] 1#1: nginx/1.30.6
-2026/11/03 07:16:30 [notice] 1#1: built by gcc 15.2.0 (Alpine 15.2.0) 
+2026/11/03 07:16:30 [notice] 1#1: built by gcc 15.2.0 (Alpine 15.2.0)
 2026/11/03 07:16:30 [notice] 1#1: OS: Linux 6.18.54.1-microsoft-standard-WSL2
 2026/11/03 07:16:30 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
 2026/11/03 07:16:30 [notice] 1#1: start worker processes
