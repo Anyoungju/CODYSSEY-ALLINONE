@@ -1,27 +1,36 @@
-# CODYSSEY ALL-IN-ONE
+# CODYSSEY ALL-IN-ONE · 대전 올인원 과제
 
+터미널·Docker·Git 실습의 소스 코드, 실행 방법, 실제 검증 증거와 학습 자료를 모은 저장소입니다.
 
-| 미션 | 결과물 | 상태 |
-|---|---|---|
-| E1-1 | [개발자 작업실 구축](E1-1/README.md) | 로컬·CI 검증 완료, 네이토 1차 61% 피드백 로컬 보완·재평가 대기 |
+## E1-1 · 내 컴퓨터에 개발자용 작업실 꾸미기
 
-[자동 로그인 빠른 실행](automation/README.md) — 비밀번호는 저장소에 포함하지 않습니다.
+직접 만든 한국어 웹페이지를 NGINX 컨테이너로 실행하고, 파일 권한·포트 연결·바인드 마운트·볼륨 데이터 유지·Git 이력을 실습했습니다.
+
+**[E1-1 과제 README 열기 →](E1-1/README.md)**
+
+| 확인할 내용 | 바로가기 |
+|---|---|
+| 준비부터 실행·종료까지 | [빠른 실행](E1-1/README.md#빠른-실행) |
+| 과제 요구사항별 구현·증거 | [요구사항과 증거](E1-1/README.md#요구사항과-증거) |
+| 실제 명령과 출력 | [핵심 실행 기록](E1-1/docs/EXECUTION_EVIDENCE.md), [전체 로컬 기록](E1-1/evidence/VERIFIED_LOCAL_RESULTS.md) |
+| Dockerfile·웹페이지 | [Dockerfile](E1-1/Dockerfile), [index.html](E1-1/site/index.html) |
+| 쉬운 학습 자료 | [설명 PPT 18장](E1-1/learning/E1-1_개발자작업실_아주쉬운설명.pptx) |
+| 네이토 의견별 보완 | [18개 항목 검토표](E1-1/docs/POST_EVALUATION_REVIEW.md) |
+
+## 현재 상태
+
+- Windows Docker Desktop·Ubuntu WSL2 로컬 실습과 Linux CI 검증을 통과한 기록을 제공합니다.
+- 네이토 1차 결과는 **61% (11/18)**입니다. 이후 보완은 GitHub main의 `476c33b`까지 반영했습니다. 재평가 점수는 아직 없습니다.
+- 주소창·포트가 함께 보이는 Docker 서버 접속 캡처는 미수집입니다. 동료평가는 사용자가 진행합니다.
+- 자세한 실행 날짜와 완료 범위는 [검증 현황](E1-1/evidence/STATUS.md)에 기록합니다.
 
 ## 저장소 구조
+
 ```text
 CODYSSEY-ALLINONE/
-  E1-1/
-    README.md                  # 실제 명령·출력과 재현 절차
-    Dockerfile                 # NGINX 기반 직접 작성 이미지
-    site/index.html            # 웹 서버 콘텐츠
-    scripts/verify.sh           # Linux·로컬 실습 자동 검증
-    scripts/attach_demo.py      # 실제 PTY 접속·분리 검증
-    evidence/                  # 원본 로그와 Markdown 증거
-    evaluation/                # 네이토 원본 및 구조화 결과
-    docs/                      # 요구사항·개념·문제 해결·후속 검토
-    learning/                  # 쉬운 설명 PPT
-  automation/                  # 비밀정보 없는 로그인 코드
-  .github/workflows/          # Docker·로그인 CI
+├── E1-1/                  # 과제 소스·실행 증거·평가·학습 PPT
+├── automation/            # 계정별 로그인 자동화 코드와 안내
+└── .github/workflows/     # Docker 검증과 로그인 테스트
 ```
 
-[E1-1 실제 실행 명령과 출력](E1-1/README.md#실제-실행-증거--네이토-1차-피드백-보완), [전체 Markdown 증거](E1-1/evidence/VERIFIED_LOCAL_RESULTS.md), [18개 권고 추적](E1-1/docs/POST_EVALUATION_REVIEW.md).
+[자동 로그인 사용 안내](automation/README.md). 계정 비밀번호·GitHub 토큰·개인 `.env`는 저장소에 포함하지 않습니다.
